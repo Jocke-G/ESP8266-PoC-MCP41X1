@@ -2,14 +2,6 @@
 
 A proof of Concept for connecting a MCP41X1 digital potentiometer to a ESP8266.
 
-## IMPORTANT
-
-I havent got it working yet.
-
-Currently, when writing 35, which I thought would mean 665Ω, my multimeter shows 1920Ω. Than, when writing 36, my multimeter just says 1.
-
-So far, I have tried both manual way from learningaboutelectronics.com, and jmalloc's labrary. Links to both can be found in the bottom.
-
 ## How to connect
 
 |  MCP41X1 pin  |  ESP8266 Pin                        |  Comment             |
@@ -18,11 +10,10 @@ So far, I have tried both manual way from learningaboutelectronics.com, and jmal
 |  2 - SCLK     |  D5 - SCLK                          |                      |
 |  3 - MOSI     |  D7 - MOSI                          |                      |
 |  4 - GND      |  GND                                |                      |
-|  5 - PA0      |  3v3                                |                      |
+|  5 - PA0      |  -                                  |  To - on multimeter  |
 |  6 - P0W      |  -                                  |  To + on multimeter  |
-|  7 - P0B      |  GND                                |                      |
+|  7 - P0B      |  -                                  |                      |
 |  8 - VDD      |  3v3                                |                      |
-|  -            |  GND                                |  To - on multimeter  |
 
 ## MCP41X1
 
