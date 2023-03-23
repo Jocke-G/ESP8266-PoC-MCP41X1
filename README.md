@@ -2,6 +2,12 @@
 
 A proof of Concept for connecting a MCP41X1 digital potentiometer to a ESP32 and ESP8266.
 
+## Lessons Learned
+
+Data sheet specifies 2.7V to 5.5V, but resistence seems to be more accurate on 5v than 3.3v.
+
+Measure your pots wiper resistance and max resistance. They varies by temerature, and probably between chips. And remember, the curve is not straight. You can use this sketch to test it out.
+
 ## How to connect
 
 |  MCP41X1 Pin  |  ESP8266 Pin  |  ESP32 Pin  |  Serial Peripheral Interface  |  Comment                        |
@@ -15,11 +21,11 @@ A proof of Concept for connecting a MCP41X1 digital potentiometer to a ESP32 and
 |  7 - PB0      |  -            |  -          |                               |  To - on multimeter             |
 |  8 - VDD      |  5v           |  5v         |                               |                                 |
 
-Data sheet specifies 2.7V to 5.5V, but resistence seems to be more accurate on 5v than 3.3v.
-
 ## MCP41X1
 
 For this poc, a MCP4151-502E/P was used.
+
+[Datasheet](https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/22060b.pdf)
 
 MCP: Multi-chip package
 
@@ -82,5 +88,3 @@ https://github.com/jmalloc/arduino-mcp4xxx
 ## References
 
 http://www.learningaboutelectronics.com/Articles/MCP4131-digital-potentiometer-circuit.php
-
-https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/22060b.pdf

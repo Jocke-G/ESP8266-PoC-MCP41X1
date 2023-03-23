@@ -2,13 +2,14 @@
 
 #include "MCP41X1.h"
 
-#define CS_PIN 17
+#define CS_PIN SS
 #define POT_STEPS 256
-#define MAX_OHMS 5090
-#define WIPER_RESISTANCE 103
+#define WIPER_RESISTANCE 75
+#define MAX_RESISTANCE 5000
+
 #define SERIAL_BAUDRATE 115200
 
-MCP41X1 digiPot = MCP41X1(CS_PIN, MAX_OHMS, WIPER_RESISTANCE, POT_STEPS);
+MCP41X1 digiPot = MCP41X1(CS_PIN, POT_STEPS, WIPER_RESISTANCE, MAX_RESISTANCE);
 
 bool throwNext = false;
 bool insertResistance = false;
@@ -27,10 +28,10 @@ void setup() {
 
   Serial.println("== Pot characteristics");
   Serial.printf("Steps\t\t\t%d\n\r", POT_STEPS);
-  Serial.printf("Max Ohms\t\t%d\n\r", MAX_OHMS);
+  Serial.printf("Max Resistance\t\t%d\n\r", MAX_RESISTANCE);
   Serial.printf("Wiper Resistance\t%d\n\r", WIPER_RESISTANCE);
   float perStep = digiPot.getResistancePerStep();
-  Serial.printf("Per Step\t\t%f\n\r", perStep);
+  Serial.printf("Per Step\t\t%.1f\n\r", perStep);
 
   digiPot.init();
   Serial.println("Setup Completed");
@@ -71,7 +72,7 @@ void loop() {
   Serial.printf("Step\t\t\t%d\n\r", step);
 
   float assumedResistance = digiPot.calculateAssumedResistance(step);
-  Serial.printf("Assumed resistance\t%f\n\r", assumedResistance);
+  Serial.printf("Assumed resistance\t%.1f\n\r", assumedResistance);
 
   digiPot.writeSteps(step);
 }

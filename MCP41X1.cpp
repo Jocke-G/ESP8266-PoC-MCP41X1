@@ -1,6 +1,6 @@
 #include "MCP41X1.h"
 
-MCP41X1::MCP41X1(int chipSelectPin, float maxResistance, float wiperResistance, float potSteps) {
+MCP41X1::MCP41X1(int chipSelectPin, float potSteps, float wiperResistance, float maxResistance) {
   this->chipSelectPin = chipSelectPin;
   this->maxResistance = maxResistance;
   this->wiperResistance = wiperResistance;
@@ -47,4 +47,3 @@ void MCP41X1::writeResistance(float resistance) {
   int steps = calculateSteps(resistance);
   writeSteps(steps);
 }
-

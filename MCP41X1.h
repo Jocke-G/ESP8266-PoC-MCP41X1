@@ -18,7 +18,7 @@ class MCP41X1 {
 
   public:
 
-    MCP41X1(int chipSelectPin, float maxResistance, float wiperResistance, float potSteps);
+    MCP41X1(int chipSelectPin, float potSteps, float wiperResistance, float maxResistance);
     void init();
     int calculateSteps(float resistance);
     float calculateAssumedResistance(int steps);
