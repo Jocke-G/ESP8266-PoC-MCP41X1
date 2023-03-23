@@ -1,23 +1,25 @@
-# ESP8266 - Proof of Concept - MCP41X1 Digital Potentiometer
+# ESP - Proof of Concept - MCP41X1 Digital Potentiometer
 
-A proof of Concept for connecting a MCP41X1 digital potentiometer to a ESP8266.
+A proof of Concept for connecting a MCP41X1 digital potentiometer to a ESP32 and ESP8266.
 
 ## How to connect
 
-|  MCP41X1 pin  |  ESP8266 Pin                        |  Comment             |
-|---------------|-------------------------------------|----------------------|
-|  1 - CS       |  D8 (Configurable, any digital pin) |                      |
-|  2 - SCLK     |  D5 - SCLK                          |                      |
-|  3 - MOSI     |  D7 - MOSI                          |                      |
-|  4 - GND      |  GND                                |                      |
-|  5 - PA0      |  -                                  |  To - on multimeter  |
-|  6 - P0W      |  -                                  |  To + on multimeter  |
-|  7 - P0B      |  -                                  |                      |
-|  8 - VDD      |  3v3                                |                      |
+|  MCP41X1 Pin  |  ESP8266 Pin  |  ESP32 Pin  |  Serial Peripheral Interface  |  Comment                        |
+|---------------|---------------|-------------|-------------------------------|---------------------------------|
+|  1 - CS       |  15/D8        |  5          |  Chip Select/Slave Select     |  Configurable, any digital pin  |
+|  2 - SCLK     |  14/D5        |  18         |  Serial Clock                 |                                 |
+|  3 - MOSI     |  13/D7        |  23         |  Master Output                |                                 |
+|  4 - VSS      |  GND          |  GND        |                               |                                 |
+|  5 - PA0      |  -            |  -          |                               |                                 |
+|  6 - PW0      |  -            |  -          |                               |  To + on multimeter             |
+|  7 - PB0      |  -            |  -          |                               |  To - on multimeter             |
+|  8 - VDD      |  5v           |  5v         |                               |                                 |
+
+Data sheet specifies 2.7V to 5.5V, but resistence seems to be more accurate on 5v than 3.3v.
 
 ## MCP41X1
 
-For this poc, I used a MCP4151-502E/P
+For this poc, a MCP4151-502E/P was used.
 
 MCP: Multi-chip package
 
@@ -31,7 +33,8 @@ MCP: Multi-chip package
 
 502: 5kΩ
 
-E/P: Form factor
+E: -40°C to +125°C (Extended)
+P: Plastic Dual In-line (PDIP)
 
 ### Model description
 
@@ -51,17 +54,20 @@ E/P: Form factor
              +----U----+
     1/CS   --+ O       +-- 8/VDD
              |         |
-    2/SCLK --+         +-- 7/P0B (One terminal of the potentiometer)
+    2/SCLK --+         +-- 7/PB0 (One terminal of the potentiometer)
              |         |
-    3/MOSI --+         +-- 6/P0W (Wiper terminal of the potentiometer)
+    3/MOSI --+         +-- 6/PW0 (Wiper terminal of the potentiometer)
              |         |
     4/GND  --+         +-- 5/PA0 (One terminal of the potentiometer)
              +---------+
 
-## Wemos D1
+## ESP
 
-Pinout:
-https://www.wemos.cc/en/latest/d1/d1_mini.html#pin
+For this poc, two different ESP:s was used.
+
+[Wemos D1 Mini (ESP8266)](https://www.wemos.cc/en/latest/d1/d1_mini.html#pin)
+
+[ESP32-DevKitC V4](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/hw-reference/esp32/get-started-devkitc.html#pin-layout)
 
 ## Libraries
 
@@ -76,3 +82,5 @@ https://github.com/jmalloc/arduino-mcp4xxx
 ## References
 
 http://www.learningaboutelectronics.com/Articles/MCP4131-digital-potentiometer-circuit.php
+
+https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/22060b.pdf
