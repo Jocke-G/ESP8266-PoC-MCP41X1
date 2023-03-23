@@ -4,9 +4,9 @@ A proof of Concept for connecting a MCP41X1 digital potentiometer to a ESP32 and
 
 ## Lessons Learned
 
-Data sheet specifies 2.7V to 5.5V, but resistence seems to be more accurate on 5v than 3.3v.
+Data sheet specifies 2.7V to 5.5V, but resistance seems to be more accurate on 5v than 3.3v.
 
-Measure your pots wiper resistance and max resistance. They varies by temerature, and probably between chips. And remember, the curve is not straight. You can use this sketch to test it out.
+Measure your pots wiper resistance and max resistance. They varies by temerature, and probably between chips. And remember, the curve is not perfectly linear. You can use this sketch to test it out.
 
 ## How to connect
 

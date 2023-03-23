@@ -3,13 +3,13 @@
 #include "MCP41X1.h"
 
 #define CS_PIN SS
-#define POT_STEPS 256
+#define STEPS 256
 #define WIPER_RESISTANCE 75
 #define MAX_RESISTANCE 5000
 
 #define SERIAL_BAUDRATE 115200
 
-MCP41X1 digiPot = MCP41X1(CS_PIN, POT_STEPS, WIPER_RESISTANCE, MAX_RESISTANCE);
+MCP41X1 digiPot = MCP41X1(CS_PIN, STEPS, WIPER_RESISTANCE, MAX_RESISTANCE);
 
 bool throwNext = false;
 bool insertResistance = false;
@@ -27,7 +27,7 @@ void setup() {
   Serial.printf("Selected CS/SS\t\t%d\n\r", CS_PIN);
 
   Serial.println("== Pot characteristics");
-  Serial.printf("Steps\t\t\t%d\n\r", POT_STEPS);
+  Serial.printf("Steps\t\t\t%d\n\r", STEPS);
   Serial.printf("Max Resistance\t\t%d\n\r", MAX_RESISTANCE);
   Serial.printf("Wiper Resistance\t%d\n\r", WIPER_RESISTANCE);
   float perStep = digiPot.getResistancePerStep();
